@@ -9,8 +9,6 @@ class Top(Module):
         self.always(self.run)
 
     def run(self):
-        # Print the responses each time a message is processed
-        responses = self.command_module.responses()
-        if responses:
-            for response in responses:
-                print(f"Response for Command {response.commandId}: {response.status}")
+        for command_machine in self.command_module.command_machines.values():
+            response = command_machine.get_response()
+            print(f"Response for Command {response.commandId}: {response.status}")

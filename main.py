@@ -22,9 +22,9 @@ def main():
     for _ in range(5):  # Simulate 5 commands
         command = next(commands)
         try:
-            top.command_module.process_message(command)
+            top.command_module.message_handler.process_message(command)
             top.step()  # Step the simulation to process the message
-            time.sleep(0.8)
+            time.sleep(0.4)
         except Exception as e:
             print(f"✖ Error: {e}")
 

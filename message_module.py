@@ -1,7 +1,14 @@
+from signal import Signal
+from module import Module
+from typing import TypeVar, Generic
+
+T = TypeVar("T")
+
+
 class MessageModule(Module):
     def __init__(self):
         super().__init__()
-        self.msg = self.signal({})
+        self.msg: Signal[T | None] = self.signal(None)
         self._message_hooks = []
 
     def on_message(self, fn):
@@ -9,7 +16,7 @@ class MessageModule(Module):
         self._message_hooks.append(fn)
         return fn
 
-    def process_message(self, msg: dict):
+    def process_message(self, msg: T):
         print(f"[MessageModule] Received: {msg}")
         self.msg.set(msg)
         self.step()
