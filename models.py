@@ -8,6 +8,12 @@ class CommandState(Enum):
     DELETED = "DELETED"
 
 
+class ProcessingState(Enum):
+    NONE = "NONE"
+    RUNNING = "RUNNING"
+    COMPLETED = "COMPLETED"
+
+
 @dataclass
 class Command:
     commandId: int
