@@ -12,9 +12,9 @@ class CommandModule(Module):
         self.message_handler: MessageModule = self.submodule(MessageModule())
         self.command_machines: Dict[str, CommandStateMachineModule] = {}
 
-        self.always(self.run)
+        self.always(self.on_message)
 
-    def run(self):
+    def on_message(self):
         msg = self.message_handler.msg()
         print(f"[CommandModule] Received command: {msg}")
 

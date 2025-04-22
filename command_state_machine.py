@@ -11,9 +11,9 @@ class CommandStateMachineModule(Module):
             ProcessingState.NONE
         )
 
-        self.always(self.process)
+        self.always_on(self.process_on_command, [self.command])
 
-    def process(self):
+    def process_on_command(self):
         if self.command().state == CommandState.NEW:
             if self.processing_state() == ProcessingState.COMPLETED:
                 # Cannot restart an fulfilled command
